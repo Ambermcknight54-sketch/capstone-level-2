@@ -33,24 +33,18 @@
   </head>
   <body>
     <!-- Main navigation container -->
-    <div
-        id="result-box"
-        style="margin-top: 20px; font-weight: bold; font-size: 18px"></div>
-    </div>
+
     <nav
-      class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 text-neutral-500 shadow-dark-mild hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
+      class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 shadow-dark-mild dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
       data-twe-navbar-ref>
       <div class="flex w-full flex-wrap items-center justify-between px-3">
-        <div class="ms-2">
-          <a class="text-xl text-black dark:text-white" href="#">Navbar</a>
-        </div>
         <!-- Hamburger button for mobile view -->
         <button
           class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
           type="button"
           data-twe-collapse-init
-          data-twe-target="#navbarSupportedContent2"
-          aria-controls="navbarSupportedContent2"
+          data-twe-target="#navbarSupportedContent8"
+          aria-controls="navbarSupportedContent8"
           aria-expanded="false"
           aria-label="Toggle navigation">
           <!-- Hamburger icon -->
@@ -70,51 +64,90 @@
 
         <!-- Collapsible navbar container -->
         <div
-          class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
-          id="navbarSupportedContent2"
+          class="!visible mt-2 hidden flex-grow basis-[100%] items-center justify-center lg:mt-0 lg:!flex lg:basis-auto"
+          id="navbarSupportedContent8"
           data-twe-collapse-item>
           <!-- Left links -->
           <ul
-            class="list-style-none me-auto flex flex-col ps-0 lg:mt-1 lg:flex-row"
+            class="list-style-none flex flex-col ps-0 lg:mt-1 lg:flex-row"
             data-twe-navbar-nav-ref>
-            
+            <!-- Home link -->
+            <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
+              <a
+                class="text-black dark:text-white lg:px-2"
+                aria-current="page"
+                href="#"
+                data-twe-nav-link-ref
+                >Home</a
+              >
             </li>
-           <div class="relative mb-3" data-twe-input-wrapper-init>
-  <input
-    type="email"
-    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-    id="exampleFormControlInputEmail"
-    placeholder="Example label" />
-  <label
-    for="exampleFormControlInputEmail"
-    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-    >Email input
-  </label>
-</div>
+            <!-- Link -->
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+              <a
+                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                href="#"
+                data-twe-nav-link-ref
+                >Link</a
+              >
             </li>
-          </ul>
+            <!-- Dropdown link -->
+            <li
+              class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0"
+              data-twe-nav-item-ref
+              data-twe-dropdown-ref>
+              <!-- Dropdown -->
+              <a
+                class="flex items-center text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                href="#"
+                type="button"
+                id="dropdownMenuButton2"
+                data-twe-dropdown-toggle-ref
+                aria-expanded="false">
+                Dropdown
+                <span class="ms-1 [&>svg]:w-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </a>
+              <ul
+                class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-surface-dark"
+                aria-labelledby="dropdownMenuButton1"
+                data-twe-dropdown-menu-ref>
+                <li>
+                  <a
+                    class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                    href="#"
+                    data-twe-dropdown-item-ref
+                    >Action</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                    href="#"
+                    data-twe-dropdown-item-ref
+                    >Another action</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                    href="#"
+                    data-twe-dropdown-item-ref
+                    >Something else here</a
+                  >
+                </li>
+              </ul>
+            </li>
         </div>
       </div>
     </nav>
-    <button
-  type="button"
-  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-success-3 transition duration-150 ease-in-out hover:bg-success-accent-300 hover:shadow-success-2 focus:bg-success-accent-300 focus:shadow-success-2 focus:outline-none focus:ring-0 active:bg-success-600 active:shadow-success-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-  Home
-</button>
-<button
-  type="button"
-  class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-danger-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-danger-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-danger-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-  About
-</button>
-<button
-  type="button"
-  class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-warning-accent-300 hover:shadow-warning-2 focus:bg-warning-accent-300 focus:shadow-warning-2 focus:outline-none focus:ring-0 active:bg-warning-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-  Warning
-</button>
-<button
-  type="button"
-  class="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-  Info
-</button>
   </body>
 </html>
