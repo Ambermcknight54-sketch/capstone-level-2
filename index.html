@@ -29,11 +29,11 @@
       src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js">
       defer
     </script>
-    <title>PATHOPHYSIOGY</title>
+    <title>BOOKS</title>
   </head>
-  <header>PATHOPHYSIOGY:THE STUDY OF THE ORGAN FUNCTION</header>
+  <header>SCIENCE BOOK CLUB</header>
   <main>
-      <h1>THE KIDNEY: THE MASTER ORGAN LECTURE</h1> <br>
+      <h1>THE KIDNEY: THE MASTER ORGAN</h1> <br>
       <h2> Already Registered: Login</h2> 
       <form>
       <div
@@ -42,25 +42,25 @@
           <!--E-mail input-->
       <div class="relative mb-6" data-twe-input-wrapper-init>
         <input
-          type="text"
+          type="email"
           class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
           id="email"
-          placeholder="Enteremail" />
+          placeholder="" />
 
         <label
           for="email"
           class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-          >Email Address</label
+          >Email</label
       >
     </div>
 
         <!--Password input-->
     <div class="relative mb-6" data-twe-input-wrapper-init>
       <input
-        type="text"
+        type="email"
         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-        id="password"
-        placeholder="Password" />
+        id="email"
+        placeholder="" />
 
       <label
         for="password"
@@ -72,6 +72,7 @@
       class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
       Submit
       </button>
+      <div id="resultBox" class="mt-4 text-center font-medium text-sm dark:text-white"></div>
     </div>
 
   </main>
@@ -120,9 +121,10 @@
             <!-- Home link -->
             <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
               <a
+                onclick="window.location.href='index.html'"
                 class="text-black dark:text-white lg:px-2"
                 aria-current="page"
-                href="#"
+                href="index.html"
                 data-twe-nav-link-ref
                 >Home</a
               >
@@ -130,6 +132,7 @@
             <!-- About link -->
             <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
               <a
+                onclick="window.location.href='about.html'"
                 class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
                 href="#"
                 data-twe-nav-link-ref
