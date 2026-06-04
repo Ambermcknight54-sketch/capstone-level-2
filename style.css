@@ -1,0 +1,25 @@
+h1 {
+  font-size: 40px;
+  color: blue;
+}
+figure {
+  display: inline-block; /* Keeps them from forcing a full-page row block */
+  margin: 15px; /* Adds a clean breathing space around each image card */
+  vertical-align: top;
+}
+
+/* 2. Control the image sizes */
+figure img {
+  width: 100%; /* Lets the image scale smoothly... */
+  max-width: 300px; /* ...but hard-stops it from getting bigger than 300px! */
+  height: auto; /* Keeps the image aspect ratio perfect */
+  display: block;
+}
+
+/* 3. Optional: Style the text right underneath the image */
+figcaption {
+  text-align: center;
+  margin-top: 5px;
+  font-family: sans-serif;
+  color: #555;
+}
