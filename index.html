@@ -130,19 +130,26 @@
           <legend>Select Emoji Categories</legend>
 
           <section>
-            <label>
-              Category 1: Faces
-              <input name="smileys-and-people" type="text" />
-            </label>
+            <!-- 'for' matches the unique ID of the input below -->
+            <label for="facesInput">Category 1: Faces</label>
+            <input
+              type="text"
+              id="facesInput"
+              name="smileys-and-people"
+              placeholder="e.g., happy, wink, grinch"
+              required />
           </section>
 
           <br />
 
           <section>
-            <label>
-              Category 2: Beverages
-              <input name="food-and-drink" type="text" />
-            </label>
+            <label for="beveragesInput">Category 2: Beverages</label>
+            <input
+              type="text"
+              id="beveragesInput"
+              name="food-and-drink"
+              placeholder="e.g., coffee, tea, soda"
+              required />
           </section>
         </fieldset>
 
