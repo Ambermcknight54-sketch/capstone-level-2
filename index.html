@@ -122,7 +122,32 @@
     <header>
       <h1>EMOJI'S DANGER BEHIND THE FUN</h1>
     </header>
-    <main></main>
+    <main>
+      <form id="queryForm">
+        <fieldset>
+          <legend>Select Emoji Categories</legend>
+
+          <section>
+            <label>
+              Category 1: Faces
+              <input name="smileys-and-people" type="text" />
+            </label>
+          </section>
+
+          <br />
+
+          <section>
+            <label>
+              Category 2: Beverages
+              <input name="food-and-drink" type="text" />
+            </label>
+          </section>
+        </fieldset>
+
+        <button type="submit">Get Category</button>
+        <output id="category" for="queryForm"></output>
+      </form>
+    </main>
     <footer></footer>
   </body>
 </html>
