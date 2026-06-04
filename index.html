@@ -118,34 +118,39 @@
       </div>
     </nav>
   </head>
-
-  <header>
+  <body>
+    <header>
     <h1>EMOJI'S DANGER BEHIND THE FUN</h1>
-  </header>
+   </header>
     <main> 
-      <form id="apiForm">
+     <form id="queryForm">
         <fieldset>
-          <legend>Emoji Categories:</legend>
+          <legend>Select Emoji Categories</legend>
 
           <section>
             <label>
-              Catagory 1: Faces
-              <input name="smileys-and-people" />
+              Category 1: Faces
+              <input name="smileys-and-people" type="text" />
             </label>
           </section>
+          
           <br />
+          
           <section>
             <label>
-              Catagory 2: Beverages
-              <input name="food-and-drink" />
+              Category 2: Beverages
+              <input name="food-and-drink" type="text" />
             </label>
           </section>
+
         </fieldset>
+        
         <button type="submit">Get Category</button>
         <output id="category" for="queryForm"></output>
       </form> 
-    </main>
-    <footer> </footer>
+    </main> </body>
+  
+    <footer></footer>
   </body>
 </html>
  
