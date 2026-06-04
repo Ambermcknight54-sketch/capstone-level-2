@@ -28,6 +28,7 @@
     <script
       src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"
       defer></script>
+    <script src="script.js" defer></script>
     <title>EMOJI'S</title>
     <nav
       class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 text-neutral-500 shadow-dark-mild hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
@@ -121,7 +122,30 @@
 
   <header></header>
   <main>
-    <form></form>
+    <form id="queryForm">
+      <fieldset>
+        <legend>Select Emoji Categories</legend>
+
+        <section>
+          <label>
+            Category 1: Faces
+            <input name="smileys-and-people" type="text" />
+          </label>
+        </section>
+
+        <br />
+
+        <section>
+          <label>
+            Category 2: Beverages
+            <input name="food-and-drink" type="text" />
+          </label>
+        </section>
+      </fieldset>
+
+      <button type="submit">Get Category</button>
+      <output id="category" for="queryForm"></output>
+    </form>
   </main>
   <body>
     <footer></footer>
