@@ -9,13 +9,13 @@ p {
 }
 
 figure {
-  display: inline-block;
+  display: flex;
   margin: 15px;
   vertical-align: top;
 }
 
 figure img {
   width: 100%;
-  max-width: 300px;
+  max-width: 600px;
   height: auto;
 }
