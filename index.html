@@ -26,146 +26,106 @@
       };
     </script>
     <script
-      src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js">
-      defer
-    </script>
+      src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"
+      defer></script>
     <title>BOOKS</title>
   </head>
-  <header>SCIENCE BOOK CLUB</header>
-  <main>
-      <h1>THE KIDNEY: THE MASTER ORGAN</h1> <br>
-      <h2> Already Registered: Login</h2> 
-      <form>
-      <div
-          class="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-      
-          <!--E-mail input-->
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <input
-          type="email"
-          class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-          id="email"
-          placeholder="" />
-
-        <label
-          for="email"
-          class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-          >Email</label
-      >
-    </div>
-
-        <!--Password input-->
-    <div class="relative mb-6" data-twe-input-wrapper-init>
-      <input
-        type="email"
-        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-        id="email"
-        placeholder="" />
-
-      <label
-        for="password"
-        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-        >Password</label
-      >
+  <nav
+    class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 text-neutral-500 shadow-dark-mild hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
+    data-twe-navbar-ref>
+    <div class="flex w-full flex-wrap items-center justify-between px-3">
+      <div class="ms-2">
+        <a class="text-xl text-black dark:text-white" href="#">Navbar</a>
+      </div>
+      <!-- Hamburger button for mobile view -->
       <button
-      type="Submit"
-      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-      Submit
+        class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+        type="button"
+        data-twe-collapse-init
+        data-twe-target="#navbarSupportedContent2"
+        aria-controls="navbarSupportedContent2"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <!-- Hamburger icon -->
+        <span
+          class="[&>svg]:w-7 [&>svg]:stroke-black/50 dark:[&>svg]:stroke-neutral-200">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+              clip-rule="evenodd" />
+          </svg>
+        </span>
       </button>
-      <div id="resultBox" class="mt-4 text-center font-medium text-sm dark:text-white"></div>
-    </div>
 
+      <!-- Collapsible navbar container -->
+      <div
+        class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
+        id="navbarSupportedContent2"
+        data-twe-collapse-item>
+        <!-- Left links -->
+        <ul
+          class="list-style-none me-auto flex flex-col ps-0 lg:mt-1 lg:flex-row"
+          data-twe-navbar-nav-ref>
+          <!-- Home link -->
+          <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
+            <a
+              onclick="window.location.href = 'index.html'"
+              class="text-black dark:text-white lg:px-2"
+              aria-current="page"
+              href="index.html"
+              data-twe-nav-link-ref
+              >Home</a
+            >
+          </li>
+          <!-- About link -->
+          <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+            <a
+              onclick="window.location.href = 'about.html'"
+              class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+              href="#"
+              data-twe-nav-link-ref
+              >About</a
+            >
+          </li>
+          <!-- Pricing link -->
+          <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+            <a
+              class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+              href="#"
+              data-twe-nav-link-ref
+              >Pricing</a
+            >
+          </li>
+          <!-- Become a Member link -->
+          <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+            <a
+              class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+              href="#"
+              data-twe-nav-link-ref
+              >Become a Member</a
+            >
+            <button
+              type="Submit"
+              class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+              Submit
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header>
+    <h1>THE KIDNEY: THE MASTER ORGAN</h1>
+    <br />
+  </header>
+  <main>
+    <form></form>
   </main>
   <body>
-    <!-- Main navigation container -->
-    <nav
-      class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 text-neutral-500 shadow-dark-mild hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
-      data-twe-navbar-ref>
-      <div class="flex w-full flex-wrap items-center justify-between px-3">
-        <div class="ms-2">
-          <a class="text-xl text-black dark:text-white" href="#">Navbar</a>
-        </div>
-        <!-- Hamburger button for mobile view -->
-        <button
-          class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
-          type="button"
-          data-twe-collapse-init
-          data-twe-target="#navbarSupportedContent2"
-          aria-controls="navbarSupportedContent2"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <!-- Hamburger icon -->
-          <span
-            class="[&>svg]:w-7 [&>svg]:stroke-black/50 dark:[&>svg]:stroke-neutral-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                clip-rule="evenodd" />
-            </svg>
-          </span>
-        </button>
-
-        <!-- Collapsible navbar container -->
-        <div
-          class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
-          id="navbarSupportedContent2"
-          data-twe-collapse-item>
-          <!-- Left links -->
-          <ul
-            class="list-style-none me-auto flex flex-col ps-0 lg:mt-1 lg:flex-row"
-            data-twe-navbar-nav-ref>
-            <!-- Home link -->
-            <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
-              <a
-                onclick="window.location.href='index.html'"
-                class="text-black dark:text-white lg:px-2"
-                aria-current="page"
-                href="index.html"
-                data-twe-nav-link-ref
-                >Home</a
-              >
-            </li>
-            <!-- About link -->
-            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
-              <a
-                onclick="window.location.href='about.html'"
-                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                href="#"
-                data-twe-nav-link-ref
-                >About</a
-              >
-            </li>
-            <!-- Pricing link -->
-            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
-              <a
-                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                href="#"
-                data-twe-nav-link-ref
-                >Pricing</a
-              >
-            </li>
-            <!-- Become a Member link -->
-            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
-              <a
-                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                href="#"
-                data-twe-nav-link-ref
-                >Become a Member</a
-              >
-              <button
-                type="Submit"
-                class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-                Submit
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
     <footer></footer>
   </body>
 </html>
