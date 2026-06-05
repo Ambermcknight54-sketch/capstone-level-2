@@ -1,22 +1,21 @@
 // Target the form element from your HTML page using its unique ID
 const apiForm = document.getElementById("apiForm");
-
+apiForm.onsubmit = handleSubmit;
 // STORAGE REQUIREMENT: 3) & 4) Load and use values when the page loads
-if (apiForm) {
-  // get a value from storage
-  const savedSmiley = localStorage.getItem("savedUserSmiley");
-  const savedFood = localStorage.getItem("savedUserFood");
 
-  if (savedSmiley !== null) {
-    apiForm.elements["smileys-and-people"].value = savedSmiley;
-  }
-  if (savedFood !== null) {
-    apiForm.elements["food-and-drink"].value = savedFood;
-  }
-  apiForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    getEmojiCategory();
-  });
+const savedSmiley = localStorage.getItem("savedUserSmiley");
+const savedFood = localStorage.getItem("savedUserFood");
+
+if (savedSmiley !== null) {
+  apiForm.elements["smileys-and-people"].value = savedSmiley;
+}
+if (savedFood !== null) {
+  apiForm.elements["food-and-drink"].value = savedFood;
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  getEmojiCategory(apiform);
 }
 // FUNCTIONS REQUIREMENT: One function that accepts parameters using {}
 /**
@@ -50,19 +49,13 @@ const renderCategoryItemsList = (serverDataArray) => {
 async function getEmojiCategory() {
   const outputTag = document.getElementById("category");
 
-  if (outputTag) {
-    outputTag.innerText = "⏳";
-  }
-  // Pause in debugger when this function runs (useful for breakpoints)
+  outputTag.innerText = "⏳";
   debugger;
   const response = await fetch("https://emojihub.yurace.pro/api/categories");
   const isResponseGood = response.ok;
-  if (isResponseGood === false) {
-    if (outputTag) {
-      outputTag.innerText = "❌ Connection failed!";
-    }
+  if (isResponseGood) {
   } else {
-    // Parse the incoming data stream into a readable JavaScript array
+    outputTag.innerText = "❌ Connection failed!";
     const categoriesArray = await response.json();
 
     // Read exactly what text the user typed into the input boxes using form.elements
@@ -78,19 +71,15 @@ async function getEmojiCategory() {
       submissionDataObject.userFaces !== "" &&
       submissionDataObject.userBeverages !== "";
     // CONDITIONALS REQUIREMENT: 2) Prevent empty form entries with an if/else check
-    if (isFormFilled === false) {
-      if (outputTag) {
-        // CONDITIONALS REQUIREMENT: 4) Display feedback warning for empty forms
-        outputTag.innerText = "❌ Please fill out both fields!";
-      }
+    if (isFormFilled) {
+      outputTag.innerText = "❌ Please fill out both fields!";
     } else {
       // STORAGE REQUIREMENT: 1) & 2) Save values to localStorage on success
       localStorage.setItem("savedUserSmiley", submissionDataObject.userFaces);
       localStorage.setItem("savedUserFood", submissionDataObject.userBeverages);
 
-      if (outputTag) {
-        outputTag.innerText = "";
-      }
+      outputTag.innerText = "";
+
       // FUNCTION REQUIREMENT: Called function
       renderCategoryItemsList(categoriesArray);
     }
