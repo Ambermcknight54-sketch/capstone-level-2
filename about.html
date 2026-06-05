@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EMOJI'S</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
       rel="stylesheet" />
@@ -28,7 +27,7 @@
         },
       };
     </script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <script
       src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"
       defer></script>
@@ -132,10 +131,9 @@
       <h1>Can You Write in Emoji?</h1>
 
       <br />
-
       <div
         class="block rounded-lg bg-white shadow-secondary-1 dark:bg-surface-dark">
-        <a href="#!">
+        <a href="">
           <img class="rounded-t-lg" src="emojiCode.jpg" alt="" />
         </a>
         <div class="p-6 text-surface dark:text-white">
@@ -165,14 +163,17 @@
         </label>
       </div>
       <div id="images" class="flex flex-col md:flex-row lg:flex-row gap-6">
-        <figure>
-          <img
-            src="emojiSentence.jpg"
-            alt="An example sentence structured entirely with descriptive emojis"
-            class="rounded shadow" />
-          <figcaption id="Cap4"></figcaption>
-        </figure>
-      </div>
+  <!-- Added 'w-full' to the main card container -->
+  <div class="block w-full rounded-lg bg-white shadow-secondary-1 dark:bg-surface-dark">
+    <figure class="w-full">
+      <img
+        src="emojiSentence.jpg"
+        alt="An example sentence structured entirely with descriptive emojis"
+        class="w-full rounded-t-lg object-cover" />
+      
+      <figcaption id="Cap4" class="p-6 text-surface dark:text-white text-base"></figcaption>
+    </figure>
+  </div>
     </main>
     <footer></footer>
   </body>
