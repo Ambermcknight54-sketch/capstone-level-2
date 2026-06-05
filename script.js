@@ -1,87 +1,140 @@
-// Target the form element from your HTML page using its unique ID
-const apiForm = document.getElementById("apiForm");
+// =========================================================================
+// 1. TARGET ELEMENTS & SETUP SUBMIT HANDLER
+// =========================================================================
+const apiForm = document.getElementById("queryForm");
 apiForm.onsubmit = handleSubmit;
-// STORAGE REQUIREMENT: 3) & 4) Load and use values when the page loads
 
+const cap1 = document.getElementById("cap1");
+const cap2 = document.getElementById("cap2");
+const cap3 = document.getElementById("cap3");
+
+// =========================================================================
+// 2. MAIN FORM HANDLER
+// =========================================================================
+function handleSubmit(event) {
+  event.preventDefault();
+
+  // Triggers the main async engine function
+  getEmojiCategory();
+}
+
+// =========================================================================
+// 3. LOCAL STORAGE: LOAD SAVED VALUES ON PAGE LOAD
+// =========================================================================
 const savedSmiley = localStorage.getItem("savedUserSmiley");
 const savedFood = localStorage.getItem("savedUserFood");
 
+// If saved data exists, put it back into the form fields automatically
 if (savedSmiley !== null) {
   apiForm.elements["smileys-and-people"].value = savedSmiley;
 }
 if (savedFood !== null) {
   apiForm.elements["food-and-drink"].value = savedFood;
 }
-function handleSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  getEmojiCategory(apiform);
-}
-// FUNCTIONS REQUIREMENT: One function that accepts parameters using {}
+
+// =========================================================================
+// 4. LOOPS REQUIREMENT: TRAVERSE ARRAY & RENDER VISUAL LAYOUT
+// =========================================================================
 /**
- * LOOPS: Traverses an array, displays values, and renders elements into layout.
- * @param {Array} serverDataArray - The list of categories from the API.
+ * Traverses an array, parses values, and renders elements into layout.
+ * @param {Object} options - Configuration object parameter containing data elements.
+ * @param {Array} options.serverDataArray - The category data collection from the API.
+ * @param {string} options.userFaces - What text the user submitted for smiles.
+ * @param {string} options.userBeverages - What text the user submitted for food.
  */
-const renderCategoryItemsList = (serverDataArray) => {
+const renderCategoryItemsList = ({
+  serverDataArray,
+  userFaces,
+  userBeverages,
+}) => {
   const outputTag = document.getElementById("category");
+  outputTag.innerText = ""; // Clear loader text before updating
 
-  // LOOPS REQUIREMENT: 1) Traverse an array using .forEach()
-  serverDataArray.forEach((currentCategory) => {
-    const categoryName = currentCategory.name;
+  const textItemsList = [];
 
-    let displayEmoji = "";
-
-    // CONDITIONALS: Pure string checks that assign an emoji directly
-    if (categoryName === "smileys-and-people") {
-      displayEmoji = "😀";
-    } else if (categoryName === "food-and-drink") {
-      displayEmoji = "🍔";
-    } else {
-      displayEmoji = "❓";
+  // LOOPS REQUIREMENT: Traverse array using .forEach()
+  serverDataArray.forEach((category) => {
+    if (category.name === "smileys-and-people") {
+      if (userFaces === "Smile" || userFaces === "smile") {
+        textItemsList.push("😀");
+      } else if (userFaces !== "") {
+        textItemsList.push(userFaces);
+      } else {
+        textItemsList.push("😀");
+      }
     }
-    // LOOPS REQUIREMENT: 2) Display array values & 3) Render into website
-    if (outputTag) {
-      outputTag.textContent += displayEmoji + "  ";
+
+    if (category.name === "food-and-drink") {
+      if (userBeverages === "Apple" || userBeverages === "apple") {
+        textItemsList.push("🍏");
+      } else if (userBeverages !== "") {
+        textItemsList.push(userBeverages);
+      } else {
+        textItemsList.push("🍏");
+      }
     }
   });
+
+  // EXPANDED STRING BUILDING (Using manual list concatenation logic)
+  const totalItems = textItemsList.length;
+  let finalOutputText = "";
+
+  if (totalItems === 1) {
+    finalOutputText = textItemsList[0];
+  } else if (totalItems === 2) {
+    finalOutputText = textItemsList[0] + " and " + textItemsList[1];
+  } else if (totalItems > 2) {
+    finalOutputText =
+      textItemsList[0] + ", " + textItemsList[1] + ", and " + textItemsList[2];
+  }
+
+  // Render elements directly into website interface text structure
+  outputTag.innerText = finalOutputText;
 };
-//GET method
+// 5. ASYNC FETCH & DATA STORAGE ENGINE
 async function getEmojiCategory() {
   const outputTag = document.getElementById("category");
-
   outputTag.innerText = "⏳";
-  debugger;
+
   const response = await fetch("https://emojihub.yurace.pro/api/categories");
   const isResponseGood = response.ok;
+
   if (isResponseGood) {
-  } else {
-    outputTag.innerText = "❌ Connection failed!";
+    // Parse raw text string stream into a readable object array
     const categoriesArray = await response.json();
 
-    // Read exactly what text the user typed into the input boxes using form.elements
-    let userSmileyText = apiForm.elements["smileys-and-people"].value;
-    let userFoodText = apiForm.elements["food-and-drink"].value;
+    // Read exactly what text the user typed using form.elements
+    const userSmileyText = apiForm.elements["smileys-and-people"].value;
+    const userFoodText = apiForm.elements["food-and-drink"].value;
 
+    // DATA OBJECT REQUIREMENT
     const submissionDataObject = {
       userFaces: userSmileyText,
       userBeverages: userFoodText,
     };
-    // CONDITIONALS REQUIREMENT: 1) Create another Boolean variable matching criteria
+
+    // CONDITIONALS REQUIREMENT 1: Boolean check looking for data presence
     const isFormFilled =
       submissionDataObject.userFaces !== "" &&
       submissionDataObject.userBeverages !== "";
-    // CONDITIONALS REQUIREMENT: 2) Prevent empty form entries with an if/else check
-    if (isFormFilled) {
+
+    // CONDITIONALS REQUIREMENT 2: Block empty form entries with if/else check
+    if (!isFormFilled) {
       outputTag.innerText = "❌ Please fill out both fields!";
     } else {
-      // STORAGE REQUIREMENT: 1) & 2) Save values to localStorage on success
+      // LOCAL STORAGE: Save valid current states into localStorage on success
       localStorage.setItem("savedUserSmiley", submissionDataObject.userFaces);
       localStorage.setItem("savedUserFood", submissionDataObject.userBeverages);
 
-      outputTag.innerText = "";
-
-      // FUNCTION REQUIREMENT: Called function
-      renderCategoryItemsList(categoriesArray);
+      // FUNCTIONS REQUIREMENT: Call single function that handles arguments inside matching {}
+      renderCategoryItemsList({
+        serverDataArray: categoriesArray,
+        userFaces: submissionDataObject.userFaces,
+        userBeverages: submissionDataObject.userBeverages,
+      });
     }
+  } else {
+    // Error feedback fallback state
+    outputTag.innerText = "❌ Connection failed!";
   }
 }
