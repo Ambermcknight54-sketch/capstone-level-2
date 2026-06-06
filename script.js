@@ -2,15 +2,11 @@
 const apiForm = document.getElementById("queryForm");
 apiForm.onsubmit = handleSubmit;
 
-const cap1 = document.getElementById("cap1");
-const cap2 = document.getElementById("cap2");
-const cap3 = document.getElementById("cap3");
+const cap1 = document.getElementById("Cap1");
+const cap2 = document.getElementById("Cap2");
+const cap3 = document.getElementById("Cap3");
 // 2. MAIN FORM HANDLER
-function handleSubmit(event) {
-  event.preventDefault();
-  // Triggers the main async engine function
-  getEmojiCategory();
-}
+
 // 3. LOCAL STORAGE: LOAD SAVED VALUES ON PAGE LOAD
 const savedSmiley = localStorage.getItem("savedUserSmiley");
 const savedFood = localStorage.getItem("savedUserFood");
@@ -22,7 +18,10 @@ if (savedSmiley !== null) {
 if (savedFood !== null) {
   apiForm.elements["food-and-drink"].value = savedFood;
 }
-
+function handleSubmit(event) {
+  event.preventDefault();
+  getEmojiCategory();
+}
 // =========================================================================
 // 4. LOOPS & RENDER VISUAL LAYOUT
 // =========================================================================
