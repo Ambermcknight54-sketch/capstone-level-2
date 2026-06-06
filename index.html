@@ -115,9 +115,12 @@
     </header>
     <main>
       <form id="queryForm">
-        <fieldset>
+          <fieldset>
           <legend>Select Emoji Categories</legend>
-
+          <div
+  class="block rounded-lg bg-white p-6 text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
+  <h2 class="mb-2 text-xl font-medium leading-tight">Select Emoji Categories</h2>
+  <p class="mb-4 text-base">
           <section>
             <!-- 'for' matches the unique ID of the input below -->
             <label for="facesInput">Category 1: Faces</label>
@@ -129,7 +132,6 @@
               required />
           </section>
 
-          <br />
 
           <section>
             <label for="beveragesInput">Category 2: Beverages</label>
@@ -140,27 +142,34 @@
               placeholder="e.g., coffee, tea, soda"
               required />
           </section>
-        </fieldset>
-        <br />
-        <button
+         </fieldset>
+       
+          <button
           type="submit"
           class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
           Submit
-        </button>
-       
-        <output id="category" for="queryForm"></output>
+          </button> 
+          
+         <output id="category" for="queryForm"></output>
       </form>
 
-      <br />
-
-      <h1>There Are Emoji's For Everything</h1>
-      
-    <div id="images" class= "flex-col md:flex-row lg:flex-row gap-6">
-      <figure>
-        <img src="emojifaces.jpg" alt="" />
-        <figcaption id="">Emoji's</figcaption>
-      </figure>
-
+           <h1>EMOJI'S CAN'T TEXT WITHOUT ONE</h1>
+  
+        
+        <div class="block max-w-[18rem] sm:max-w-md md:max-w-xl rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white mx-auto">
+  <!-- Image Container -->
+          <div class="relative overflow-hidden bg-cover bg-no-repeat">
+              <img 
+              class="rounded-t-lg w-full h-auto object-cover" 
+               src= "emojifaces.jpg"
+               alt="Sun setting over a calm ocean horizon" />
+          </div>
+  
+  <!-- Card Body -->
+          <div class="p-6">
+             <p class="text-base" ></p>
+          </div>
+      </div>
     </main>
     <footer></footer>
   </body>
