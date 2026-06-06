@@ -5,7 +5,6 @@ apiForm.onsubmit = handleSubmit;
 const cap1 = document.getElementById("Cap1");
 const cap2 = document.getElementById("Cap2");
 const cap3 = document.getElementById("Cap3");
-// 2. MAIN FORM HANDLER
 
 // 3. LOCAL STORAGE: LOAD SAVED VALUES ON PAGE LOAD
 const savedSmiley = localStorage.getItem("savedUserSmiley");
@@ -17,7 +16,7 @@ if (savedSmiley !== null) {
 }
 if (savedFood !== null) {
   apiForm.elements["food-and-drink"].value = savedFood;
-}
+} // 2. MAIN FORM HANDLER
 function handleSubmit(event) {
   event.preventDefault();
   getEmojiCategory();
