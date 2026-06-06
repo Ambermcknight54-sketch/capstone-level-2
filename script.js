@@ -85,6 +85,7 @@ const renderCategoryItemsList = function (giftBox) {
 async function getEmojiCategory() {
   const outputTag = document.getElementById("category");
   outputTag.innerText = "⏳";
+  debugger;
 
   const response = await fetch("https://emojihub.yurace.pro/api/categories");
   const isResponseGood = response.ok;

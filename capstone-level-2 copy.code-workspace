@@ -25,6 +25,12 @@
         "request": "launch",
         "url": "http://127.0.0.1:3000/about.html",
       },
+      {
+        "type": "chrome",
+        "name": "http://127.0.0.1:3000/about copy.html",
+        "request": "launch",
+        "url": "http://127.0.0.1:3000/about copy.html",
+      },
     ],
   },
 }
