@@ -90,6 +90,6 @@ async function handleSubmit(event) {
     catBevTag.innerText = "⚠️";
     outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
-}
+
 
 formTag.addEventListener("submit", handleSubmit);
