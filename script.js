@@ -24,7 +24,7 @@ async function handleSubmit(event) {
     const storedCatData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(storedCatData);
     const myValue = userSmileyText;
-    // This value is now loaded and ready!
+
     let matchedName = "None Matched";
     let isValid = "False";
     let emojiIcon = "❓"; // Default emoji if nothing matches
