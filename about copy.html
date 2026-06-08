@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/css/tw-elements.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          fontFamily: {
+            sans: ["Roboto", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+            mono: ["ui-monospace", "monospace"],
+          },
+        },
+        corePlugins: {
+          preflight: false,
+        },
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"
+      defer></script>
+    <script src="script.js" defer></script>
+    <title>EMOJI'S</title>
+  </head>
+  <!-- Added Gold background style via bg-amber-500 -->
+  <body
+    class="bg-amber-500 dark:bg-amber-600 min-h-screen font-sans text-neutral-800">
+    <!-- Main navigation container -->
+    <nav
+      class="relative flex w-full flex-nowrap items-center justify-between bg-zinc-50 py-2 text-neutral-500 shadow-dark-mild hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
+      data-twe-navbar-ref>
+      <div class="flex w-full flex-wrap items-center justify-between px-3">
+        <div class="ms-2">
+          <a class="text-xl text-black dark:text-white" href="#">Navbar</a>
+        </div>
+        <!-- Hamburger button for mobile view -->
+        <button
+          class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+          type="button"
+          data-twe-collapse-init
+          data-twe-target="#navbarSupportedContent2"
+          aria-controls="navbarSupportedContent2"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <!-- Hamburger icon -->
+          <span
+            class="[&>svg]:w-7 [&>svg]:stroke-black/50 dark:[&>svg]:stroke-neutral-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                clip-rule="evenodd" />
+            </svg>
+          </span>
+        </button>
+
+        <!-- Collapsible navbar container -->
+        <div
+          class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
+          id="navbarSupportedContent2"
+          data-twe-collapse-item>
+          <!-- Left links -->
+          <ul
+            class="list-style-none me-auto flex flex-col ps-0 lg:mt-1 lg:flex-row"
+            data-twe-navbar-nav-ref>
+            <!-- Home link -->
+            <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
+              <a
+                class="text-black dark:text-white lg:px-2"
+                aria-current="page"
+                href="index.html"
+                data-twe-nav-link-ref
+                >Home</a
+              >
+            </li>
+            <!-- About link -->
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+              <a
+                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                href="about copy.html"
+                data-twe-nav-link-ref
+                >About</a
+              >
+            </li>
+            <!-- Warning and Prevention link -->
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+              <a
+                class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                href="warning.html"
+                data-twe-nav-link-ref
+                >Warning</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="p-4 text-center">
+      <h1 class="text-2xl font-bold text-neutral-900 dark:text-white">
+        EMOJI'S: DANGER BEHIND THE FUN
+      </h1>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+      <!-- Input Category Form -->
+      <form id="queryForm" class="max-w-xl mx-auto mb-10">
+        <fieldset class="border-0">
+          <div
+            class="block rounded-lg bg-white p-6 text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
+            <h2 class="mb-4 text-xl font-medium leading-tight">
+              Select Emoji Categories
+            </h2>
+
+            <section class="mb-4">
+              <label for="facesInput" class="block mb-1 font-medium"
+                >Category 1: Faces</label
+              >
+              <input
+                type="text"
+                id="facesInput"
+                name="smileys-and-people"
+                placeholder="e.g.,smileys and people"
+                class="w-full p-2 border rounded"
+                required />
+              <output id="category-faces" for="queryForm"></output>
+            </section>
+
+            <section class="mb-6">
+              <label for="beveragesInput" class="block mb-1 font-medium"
+                >Category 2: Beverages</label
+              >
+              <input
+                type="text"
+                id="beveragesInput"
+                name="food-and-drink"
+                placeholder="e.g., food and drink"
+                class="w-full p-2 border rounded"
+                required />
+              <output id="category-beverages" for="queryForm"></output>
+            </section>
+
+            <button
+              type="submit"
+              class="inline-block rounded bg-blue-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800">
+              Submit
+            </button>
+          </div>
+        </fieldset>
+        <output id="category" for="queryForm"></output>
+      </form>
+
+      <h2
+        class="text-xl font-bold text-center mb-6 text-neutral-900 dark:text-white">
+        EMOJI'S CAN'T TEXT WITHOUT ONE
+      </h2>
+
+      <!-- Featured Layout Image Card -->
+      <div
+        class="block w-full max-w-xs sm:max-w-md md:max-w-xl rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white mx-auto overflow-hidden mb-12">
+        <div class="relative overflow-hidden bg-cover bg-no-repeat w-full">
+          <img
+            class="rounded-t-lg w-full h-auto object-cover block"
+            src="emojifaces.jpg"
+            alt="Various emoji expressions showing dangerous or fun faces" />
+        </div>
+        <div class="p-6">
+          <p class="text-base">
+            On the surface, emojis are woven seamlessly into our everyday
+            digital routines, serving as quick, casual punctuated thoughts in
+            text messages, social media updates, and work chats. However, this
+            effortless utility masks a highly sophisticated system of underlying
+            contextual definitions.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-6 text-center text-xs text-neutral-800 font-medium">
+      2026 Emoji Insights
+    </footer>
+  </body>
+</html>
