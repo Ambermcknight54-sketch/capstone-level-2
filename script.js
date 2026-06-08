@@ -45,10 +45,8 @@ async function handleSubmit(event) {
         if (currentName === "smileys and people") {
           emojiIcon = "😀";
           catFaceTag.innerText = emojiIcon;
-          console.log("😀");
         } else if (currentName === "food and drink") {
           emojiIcon = "🍔";
-          console.log("🍔");
           catBevTag.innerText = emojiIcon;
         } else {
           catFaceTag.innerText = "❓";
