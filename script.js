@@ -1,93 +1,105 @@
-function normalizeCategoryInput(text) {
-  return text.trim().toLowerCase().replace(/\s+/g, "-");
-}
+// 1. Target elements using only getElementById and assign the submit handler
+const formTag = document.getElementById("queryForm");
 
+// 2. Define the main execution handler
 async function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
-  const outputTag = document.getElementById("category");
-  const catFaceTag = document.getElementById("category-faces");
-  const catBevTag = document.getElementById("category-beverages");
+  let outputTag = document.getElementById("category");
+  let catFaceTag = document.getElementById("category-faces");
+  let catBevTag = document.getElementById("category-beverages");
 
-  if (outputTag) {
-    outputTag.innerText = "⏳ please wait";
-  }
+  // Update the UI directly with a simple loading symbol
+  outputTag.innerText = "⏳ please wait";
 
-  try {
-    const response = await fetch("https://emojihub.yurace.pro/api/categories");
+  // Use fetch() to request data from the API
+  const response = await fetch("https://emojihub.yurace.pro/api/categories");
 
-    if (!response.ok) {
-      if (outputTag) {
-        outputTag.innerText = "❌ Could not fetch categories.";
-      }
-      return;
-    }
-
+  if (response.ok) {
+    // Parse the raw incoming response into a readable JavaScript array
     const categoriesArray = await response.json();
-    const userSmileyText = normalizeCategoryInput(
-      form.elements["smileys-and-people"].value,
-    );
-    const userFoodText = normalizeCategoryInput(
-      form.elements["food-and-drink"].value,
-    );
 
-    sessionStorage.setItem("userSmileyText", userSmileyText);
-    sessionStorage.setItem("userFoodText", userFoodText);
+    // Read exactly what text the user typed into the input boxes right now
+    const userSmileyText = form.elements["smileys-and-people"].value;
+    const userFoodText = form.elements["food-and-drink"].value;
 
-    let matchedName = "No match found.";
+    let matchedName = "None Matched";
+    let isValid = "False";
+    let emojiIcon = "❓"; // Default emoji if nothing matches
     let textItemsList = [];
 
+    // 4. Look through the list one by one using a standard loop
     for (let i = 0; i < categoriesArray.length; i++) {
-      const currentCategory = categoriesArray[i];
-      const currentName = currentCategory.toLowerCase();
-      let emojiIcon = "❓";
-
+      //"smileys and people",
+      //console.log(categoriesArray[i]);
+      let currentCategory = categoriesArray[i];
+      let currentName = currentCategory.toLowerCase();
+      let emojiIcon = "❓"; // Default emoji if nothing matches
+      // Loop through the categories instead of mapping them
+      // If what the user typed matches an official category name, save it!
       if (currentName === userSmileyText || currentName === userFoodText) {
         matchedName = currentCategory;
+        isValid = "True";
 
-        if (currentName === "smileys-and-people") {
+        // Give it a special emoji depending on which group it matches!
+        if (currentName === "smileys and people") {
           emojiIcon = "😀";
-          if (catFaceTag) {
-            catFaceTag.innerText = emojiIcon;
-          }
-        } else if (currentName === "food-and-drink") {
+          catFaceTag.innerText = emojiIcon;
+          console.log("😀");
+        } else if (currentName === "food and drink") {
           emojiIcon = "🍔";
-          if (catBevTag) {
-            catBevTag.innerText = emojiIcon;
-          }
+          console.log("🍔");
+          catBevTag.innerText = emojiIcon;
+        } else {
+          catFaceTag.innerText = "❓";
+          catBevTag.innerText = "❓";
         }
-
-        textItemsList.push(matchedName);
       }
-    }
+      // if (category.name === "smileys-and-people") {
+      //   if (userSmileyText === "Smile" || userSmileyText === "smile") {
+      //     textItemsList.push("😀");
+      //   } else if (userSmileyText !== "") {
+      //     textItemsList.push(userSmileyText);
+      //   } else {
+      //     textItemsList.push("😀");
+      //   }
+      // }
 
+      // if (category.name === "food-and-drink") {
+      //   if (userFoodText === "Apple" || userFoodText === "apple") {
+      //     textItemsList.push("🍏");
+      //   } else if (userFoodText !== "") {
+      //     textItemsList.push(userFoodText);
+      //   } else {
+      //     textItemsList.push("🍏");
+      //   }
+      // }
+    }
     const totalItems = textItemsList.length;
-    let finalOutputText = matchedName;
+    let finalOutputText = "";
 
-    if (totalItems === 0) {
-      finalOutputText = "No matching categories found.";
+    if (totalItems === 1) {
+      // If there's only one item, just use it directly
+      finalOutputText = textItemsList[0];
     } else if (totalItems === 2) {
-      finalOutputText = `${textItemsList[0]} and ${textItemsList[1]}`;
+      // If there are exactly two items, combine them manually with "and"
+      finalOutputText = textItemsList[0] + " and " + textItemsList[1];
     } else if (totalItems > 2) {
-      finalOutputText = `${textItemsList.slice(0, 2).join(", ")} and ${textItemsList[2]}`;
+      // For three or more items, separate them with commas and add the final "and"
+      finalOutputText =
+        textItemsList[0] +
+        ", " +
+        textItemsList[1] +
+        ", and " +
+        textItemsList[2];
     }
 
-    if (outputTag) {
-      outputTag.innerText = finalOutputText;
-    }
-  } catch (error) {
-    if (outputTag) {
-      outputTag.innerText = "❌ An error occurred.";
-    }
-    console.error(error);
+    // Display that text string variable directly inside our HTML output tag
+    outputTag.innerText = finalOutputText;
+  } else {
+    // This block runs if response.ok is false
+    outputTag.innerText = "❌";
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const formTag = document.getElementById("queryForm");
-  if (!formTag) {
-    return;
-  }
-
-  formTag.addEventListener("submit", handleSubmit);
-});
+formTag.addEventListener("submit", handleSubmit);
