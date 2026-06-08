@@ -21,7 +21,10 @@ async function handleSubmit(event) {
     // Read exactly what text the user typed into the input boxes right now
     const userSmileyText = form.elements["smileys-and-people"].value;
     const userFoodText = form.elements["food-and-drink"].value;
-
+    const storedCatData = localStorage.getItem("userInfo");
+    const userInput = JSON.parse(storedCatData);
+    const myValue = userSmileyText;
+    // This value is now loaded and ready!
     let matchedName = "None Matched";
     let isValid = "False";
     let emojiIcon = "❓"; // Default emoji if nothing matches
