@@ -1,98 +1,95 @@
-// Target the form element from your HTML page using its unique ID
-const apiForm = document.getElementById("apiForm");
+// 2. Define the main execution handler
+const formTag = document.getElementById("queryForm");
 
-// STORAGE REQUIREMENT: 3) & 4) Load and use values when the page loads
-if (apiForm) {
-  // get a value from storage
-  const savedSmiley = localStorage.getItem("savedUserSmiley");
-  const savedFood = localStorage.getItem("savedUserFood");
+// 2. Define the main execution handler
+async function handleSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  let outputTag = document.getElementById("category");
+  let catFaceTag = document.getElementById("category-faces");
+  let catBevTag = document.getElementById("category-beverages");
 
-  if (savedSmiley !== null) {
-    apiForm.elements["smileys-and-people"].value = savedSmiley;
-  }
-  if (savedFood !== null) {
-    apiForm.elements["food-and-drink"].value = savedFood;
-  }
-  apiForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    getEmojiCategory();
-  });
-}
-// FUNCTIONS REQUIREMENT: One function that accepts parameters using {}
-/**
- * LOOPS: Traverses an array, displays values, and renders elements into layout.
- * @param {Array} serverDataArray - The list of categories from the API.
- */
-const renderCategoryItemsList = (serverDataArray) => {
-  const outputTag = document.getElementById("category");
+  // Update the UI directly with a simple loading symbol
+  outputTag.innerText = "⏳ please wait";
 
-  // LOOPS REQUIREMENT: 1) Traverse an array using .forEach()
-  serverDataArray.forEach((currentCategory) => {
-    const categoryName = currentCategory.name;
+  // 3) Handle errors with conditionals and try/catch
+  try {
+    // Use fetch() to request data from the API
+    const response = await fetch("https://emojihub.yurace.pro/api/categories");
 
-    let displayEmoji = "";
-
-    // CONDITIONALS: Pure string checks that assign an emoji directly
-    if (categoryName === "smileys-and-people") {
-      displayEmoji = "😀";
-    } else if (categoryName === "food-and-drink") {
-      displayEmoji = "🍔";
-    } else {
-      displayEmoji = "❓";
+    // Check if the network request failed
+    if (!response.ok) {
+      throw new Error(`API Network error! Status: ${response.status}`);
     }
-    // LOOPS REQUIREMENT: 2) Display array values & 3) Render into website
-    if (outputTag) {
-      outputTag.textContent += displayEmoji + "  ";
-    }
-  });
-};
-//GET method
-async function getEmojiCategory() {
-  const outputTag = document.getElementById("category");
 
-  if (outputTag) {
-    outputTag.innerText = "⏳";
-  }
-  // Pause in debugger when this function runs (useful for breakpoints)
-  debugger;
-  const response = await fetch("https://emojihub.yurace.pro/api/categories");
-  const isResponseGood = response.ok;
-  if (isResponseGood === false) {
-    if (outputTag) {
-      outputTag.innerText = "❌ Connection failed!";
-    }
-  } else {
-    // Parse the incoming data stream into a readable JavaScript array
+    // Parse the raw incoming response into a readable JavaScript array
     const categoriesArray = await response.json();
 
-    // Read exactly what text the user typed into the input boxes using form.elements
-    let userSmileyText = apiForm.elements["smileys-and-people"].value;
-    let userFoodText = apiForm.elements["food-and-drink"].value;
+    // Read exactly what text the user typed into the input boxes right now
+    const userSmileyText = form.elements["smileys-and-people"].value
+      .toLowerCase()
+      .trim();
+    const userFoodText = form.elements["food-and-drink"].value
+      .toLowerCase()
+      .trim();
 
-    const submissionDataObject = {
-      userFaces: userSmileyText,
-      userBeverages: userFoodText,
-    };
-    // CONDITIONALS REQUIREMENT: 1) Create another Boolean variable matching criteria
-    const isFormFilled =
-      submissionDataObject.userFaces !== "" &&
-      submissionDataObject.userBeverages !== "";
-    // CONDITIONALS REQUIREMENT: 2) Prevent empty form entries with an if/else check
-    if (isFormFilled === false) {
-      if (outputTag) {
-        // CONDITIONALS REQUIREMENT: 4) Display feedback warning for empty forms
-        outputTag.innerText = "❌ Please fill out both fields!";
-      }
-    } else {
-      // STORAGE REQUIREMENT: 1) & 2) Save values to localStorage on success
-      localStorage.setItem("savedUserSmiley", submissionDataObject.userFaces);
-      localStorage.setItem("savedUserFood", submissionDataObject.userBeverages);
+    // 1) Create a Boolean variable (Starts with a question word for code quality rules)
+    let isMatchFound = false;
 
-      if (outputTag) {
-        outputTag.innerText = "";
+    let textItemsList = [];
+
+    // 4. Look through the list one by one using a standard loop
+    for (let i = 0; i < categoriesArray.length; i++) {
+      let currentCategory = categoriesArray[i];
+      let currentName = currentCategory.toLowerCase();
+
+      // If what the user typed matches an official category name, save it!
+      if (currentName === userSmileyText || currentName === userFoodText) {
+        isMatchFound = true; // Update our Boolean variable
+
+        // Give it a special emoji depending on which group it matches!
+        if (currentName === "smileys and people") {
+          let emojiIcon = "😀";
+          catFaceTag.innerText = emojiIcon;
+          textItemsList.push(emojiIcon);
+        } else if (currentName === "food and drink") {
+          let emojiIcon = "🍔";
+          catBevTag.innerText = emojiIcon;
+          textItemsList.push(emojiIcon);
+        }
       }
-      // FUNCTION REQUIREMENT: Called function
-      renderCategoryItemsList(categoriesArray);
     }
+
+    // 2) Use the Boolean variable as a condition
+    // 4) Display proper feedback with conditionals based on success/failure
+    if (isMatchFound) {
+      const totalItems = textItemsList.length;
+      let finalOutputText = "";
+
+      if (totalItems === 1) {
+        finalOutputText = `Found: ${textItemsList[0]}`;
+      } else if (totalItems === 2) {
+        finalOutputText = `Found: ${textItemsList[0]} and ${textItemsList[1]}`;
+      } else if (totalItems > 2) {
+        finalOutputText = `${textItemsList[0]}, ${textItemsList[1]}, and ${textItemsList[2]}`;
+      }
+
+      outputTag.innerText = finalOutputText;
+    } else {
+      // 4) Proper feedback when the boolean condition is false (no category matched)
+      catFaceTag.innerText = "❓";
+      catBevTag.innerText = "❓";
+      outputTag.innerText = "❌ No matching categories found. Try again!";
+    }
+  } catch (error) {
+    // 3) Catch block to handle any errors thrown during execution
+    console.error("Application Error:", error);
+
+    // 4) Display proper error feedback to the user via the UI
+    catFaceTag.innerText = "⚠️";
+    catBevTag.innerText = "⚠️";
+    outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
 }
+
+formTag.addEventListener("submit", handleSubmit);
