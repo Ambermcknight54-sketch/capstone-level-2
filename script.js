@@ -1,4 +1,3 @@
-// 1. Target elements using only getElementById and assign the submit handler
 const formTag = document.getElementById("queryForm");
 
 // 2. Define the main execution handler
@@ -45,8 +44,10 @@ async function handleSubmit(event) {
         if (currentName === "smileys and people") {
           emojiIcon = "😀";
           catFaceTag.innerText = emojiIcon;
+          console.log("😀");
         } else if (currentName === "food and drink") {
           emojiIcon = "🍔";
+          console.log("🍔");
           catBevTag.innerText = emojiIcon;
         } else {
           catFaceTag.innerText = "❓";
