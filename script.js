@@ -11,94 +11,83 @@ async function handleSubmit(event) {
   // Update the UI directly with a simple loading symbol
   outputTag.innerText = "⏳ please wait";
 
-  // Use fetch() to request data from the API
-  const response = await fetch("https://emojihub.yurace.pro/api/categories");
+  // 3) Handle errors with conditionals and try/catch
+  try {
+    // Use fetch() to request data from the API
+    const response = await fetch("https://emojihub.yurace.pro/api/categories");
 
-  if (response.ok) {
+    // Check if the network request failed
+    if (!response.ok) {
+      throw new Error(`API Network error! Status: ${response.status}`);
+    }
+
     // Parse the raw incoming response into a readable JavaScript array
     const categoriesArray = await response.json();
 
     // Read exactly what text the user typed into the input boxes right now
-    const userSmileyText = form.elements["smileys-and-people"].value;
-    const userFoodText = form.elements["food-and-drink"].value;
-    const storedCatData = localStorage.getItem("userInfo");
-    const userInfo = JSON.parse(storedCatData);
-    const myValue = userSmileyText;
+    const userSmileyText = form.elements["smileys-and-people"].value
+      .toLowerCase()
+      .trim();
+    const userFoodText = form.elements["food-and-drink"].value
+      .toLowerCase()
+      .trim();
 
-    let matchedName = "None Matched";
-    let isValid = "False";
-    let emojiIcon = "❓"; // Default emoji if nothing matches
+    // 1) Create a Boolean variable (Starts with a question word for code quality rules)
+    let isMatchFound = false;
+
     let textItemsList = [];
 
     // 4. Look through the list one by one using a standard loop
     for (let i = 0; i < categoriesArray.length; i++) {
-      //"smileys and people",
-      //console.log(categoriesArray[i]);
       let currentCategory = categoriesArray[i];
       let currentName = currentCategory.toLowerCase();
-      let emojiIcon = "❓"; // Default emoji if nothing matches
-      // Loop through the categories instead of mapping them
+
       // If what the user typed matches an official category name, save it!
       if (currentName === userSmileyText || currentName === userFoodText) {
-        matchedName = currentCategory;
-        isValid = "True";
+        isMatchFound = true; // Update our Boolean variable
 
         // Give it a special emoji depending on which group it matches!
         if (currentName === "smileys and people") {
-          emojiIcon = "😀";
+          let emojiIcon = "😀";
           catFaceTag.innerText = emojiIcon;
+          textItemsList.push(emojiIcon);
         } else if (currentName === "food and drink") {
-          emojiIcon = "🍔";
+          let emojiIcon = "🍔";
           catBevTag.innerText = emojiIcon;
-        } else {
-          catFaceTag.innerText = "❓";
-          catBevTag.innerText = "❓";
+          textItemsList.push(emojiIcon);
         }
       }
-      // if (category.name === "smileys-and-people") {
-      //   if (userSmileyText === "Smile" || userSmileyText === "smile") {
-      //     textItemsList.push("😀");
-      //   } else if (userSmileyText !== "") {
-      //     textItemsList.push(userSmileyText);
-      //   } else {
-      //     textItemsList.push("😀");
-      //   }
-      // }
-
-      // if (category.name === "food-and-drink") {
-      //   if (userFoodText === "Apple" || userFoodText === "apple") {
-      //     textItemsList.push("🍏");
-      //   } else if (userFoodText !== "") {
-      //     textItemsList.push(userFoodText);
-      //   } else {
-      //     textItemsList.push("🍏");
-      //   }
-      // }
-    }
-    const totalItems = textItemsList.length;
-    let finalOutputText = "";
-
-    if (totalItems === 1) {
-      // If there's only one item, just use it directly
-      finalOutputText = textItemsList[0];
-    } else if (totalItems === 2) {
-      // If there are exactly two items, combine them manually with "and"
-      finalOutputText = textItemsList[0] + " and " + textItemsList[1];
-    } else if (totalItems > 2) {
-      // For three or more items, separate them with commas and add the final "and"
-      finalOutputText =
-        textItemsList[0] +
-        ", " +
-        textItemsList[1] +
-        ", and " +
-        textItemsList[2];
     }
 
-    // Display that text string variable directly inside our HTML output tag
-    outputTag.innerText = finalOutputText;
-  } else {
-    // This block runs if response.ok is false
-    outputTag.innerText = "❌";
+    // 2) Use the Boolean variable as a condition
+    // 4) Display proper feedback with conditionals based on success/failure
+    if (isMatchFound) {
+      const totalItems = textItemsList.length;
+      let finalOutputText = "";
+
+      if (totalItems === 1) {
+        finalOutputText = `Found: ${textItemsList[0]}`;
+      } else if (totalItems === 2) {
+        finalOutputText = `Found: ${textItemsList[0]} and ${textItemsList[1]}`;
+      } else if (totalItems > 2) {
+        finalOutputText = `${textItemsList[0]}, ${textItemsList[1]}, and ${textItemsList[2]}`;
+      }
+
+      outputTag.innerText = finalOutputText;
+    } else {
+      // 4) Proper feedback when the boolean condition is false (no category matched)
+      catFaceTag.innerText = "❓";
+      catBevTag.innerText = "❓";
+      outputTag.innerText = "❌ No matching categories found. Try again!";
+    }
+  } catch (error) {
+    // 3) Catch block to handle any errors thrown during execution
+    console.error("Application Error:", error);
+
+    // 4) Display proper error feedback to the user via the UI
+    catFaceTag.innerText = "⚠️";
+    catBevTag.innerText = "⚠️";
+    outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
 }
 
