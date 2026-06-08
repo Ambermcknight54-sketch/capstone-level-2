@@ -1,6 +1,9 @@
 const formTag = document.getElementById("queryForm");
 
 // 2. Define the main execution handler
+const formTag = document.getElementById("queryForm");
+
+// 2. Define the main execution handler
 async function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
