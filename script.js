@@ -9,7 +9,7 @@ async function handleSubmit(event) {
   let catBevTag = document.getElementById("category-beverages");
 
   // Update the UI directly with a simple loading symbol
-  outputTag.innerText = "⏳ please wait...";
+  outputTag.innerText = "⏳";
 
   // 3) Handle errors with conditionals and try/catch
   try {
