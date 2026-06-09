@@ -75,6 +75,8 @@ async function handleSubmit(event) {
       }
 
       outputTag.innerText = finalOutputText;
+
+      localStorage.setItem("finalOutput", outputTag.innerText);
     } else {
       // 4) Proper feedback when the boolean condition is false (no category matched)
       catFaceTag.innerText = "❓";
@@ -92,6 +94,14 @@ async function handleSubmit(event) {
     outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
 }
+function renderEmojiResult() {
+  let finalOutput = localStorage.getItem("finalOutput");
+  let emojiResult = document.getElementById("emojiResult");
+  if (emojiResult && finalOutput) {
+    emojiResult.innerText = finalOutput;
+  }
+}
+renderEmojiResult();
 
 // Ensure the listener sits completely outside the function block!
 formTag.addEventListener("submit", handleSubmit);
