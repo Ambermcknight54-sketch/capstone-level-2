@@ -74,7 +74,6 @@ async function handleSubmit(event) {
         finalOutputText = `Found Categories: ${textItemsList[0]} and ${textItemsList[1]}`;
       }
 
-      outputTag.className = "block mt-4 text-green-700 font-bold text-center";
       outputTag.innerText = finalOutputText;
     } else {
       // 4) Proper feedback when the boolean condition is false (no category matched)
