@@ -1,4 +1,3 @@
-// 2. Define the main execution handler
 const formTag = document.getElementById("queryForm");
 
 // 2. Define the main execution handler
@@ -90,6 +89,6 @@ async function handleSubmit(event) {
     catBevTag.innerText = "⚠️";
     outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
-
+}
 
 formTag.addEventListener("submit", handleSubmit);
