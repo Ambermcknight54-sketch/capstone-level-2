@@ -41,7 +41,7 @@ async function handleSubmit(event) {
 
       // Check if the current API item matches what the user typed in either box
       if (currentName === userSmileyText || currentName === userFoodText) {
-        isMatchFound = true; // Update our Boolean variable
+        isMatchFound = true;
 
         // Give it a special emoji depending on which group it matches!
         if (
