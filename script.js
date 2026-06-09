@@ -9,7 +9,7 @@ async function handleSubmit(event) {
   let catBevTag = document.getElementById("category-beverages");
 
   // Update the UI directly with a simple loading symbol
-  outputTag.innerText = "⏳ please wait";
+  outputTag.innerText = "⏳ please wait...";
 
   // 3) Handle errors with conditionals and try/catch
   try {
@@ -25,33 +25,36 @@ async function handleSubmit(event) {
     const categoriesArray = await response.json();
 
     // Read exactly what text the user typed into the input boxes right now
-    const userSmileyText = form.elements["smileys-and-people"].value
-      .toLowerCase()
-      .trim();
-    const userFoodText = form.elements["food-and-drink"].value
-      .toLowerCase()
-      .trim();
+    // Safely grabbing them from form.elements using the HTML 'name' attribute
+    const userSmileyText =
+      form.elements["smileys-and-people"].value.toLowerCase();
+    const userFoodText = form.elements["food-and-drink"].value.toLowerCase();
 
-    // 1) Create a Boolean variable (Starts with a question word for code quality rules)
+    // 1) Create a Boolean variable (Starts with a question word for Capstone code quality)
     let isMatchFound = false;
-
     let textItemsList = [];
 
     // 4. Look through the list one by one using a standard loop
     for (let i = 0; i < categoriesArray.length; i++) {
       let currentCategory = categoriesArray[i];
-      let currentName = currentCategory.toLowerCase();
+      let currentName = currentCategory.toLowerCase().trim();
 
-      // If what the user typed matches an official category name, save it!
+      // Check if the current API item matches what the user typed in either box
       if (currentName === userSmileyText || currentName === userFoodText) {
         isMatchFound = true; // Update our Boolean variable
 
         // Give it a special emoji depending on which group it matches!
-        if (currentName === "smileys and people") {
+        if (
+          currentName === "smileys and people" &&
+          textItemsList.indexOf("😀") === -1
+        ) {
           let emojiIcon = "😀";
           catFaceTag.innerText = emojiIcon;
           textItemsList.push(emojiIcon);
-        } else if (currentName === "food and drink") {
+        } else if (
+          currentName === "food and drink" &&
+          textItemsList.indexOf("🍔") === -1
+        ) {
           let emojiIcon = "🍔";
           catBevTag.innerText = emojiIcon;
           textItemsList.push(emojiIcon);
@@ -66,19 +69,19 @@ async function handleSubmit(event) {
       let finalOutputText = "";
 
       if (totalItems === 1) {
-        finalOutputText = `Found: ${textItemsList[0]}`;
+        finalOutputText = `Found Category: ${textItemsList[0]}`;
       } else if (totalItems === 2) {
-        finalOutputText = `Found: ${textItemsList[0]} and ${textItemsList[1]}`;
-      } else if (totalItems > 2) {
-        finalOutputText = `${textItemsList[0]}, ${textItemsList[1]}, and ${textItemsList[2]}`;
+        finalOutputText = `Found Categories: ${textItemsList[0]} and ${textItemsList[1]}`;
       }
 
+      outputTag.className = "block mt-4 text-green-700 font-bold text-center";
       outputTag.innerText = finalOutputText;
     } else {
       // 4) Proper feedback when the boolean condition is false (no category matched)
       catFaceTag.innerText = "❓";
       catBevTag.innerText = "❓";
-      outputTag.innerText = "❌ No matching categories found. Try again!";
+      outputTag.innerText =
+        "❌ No matching official categories found. Please check your spelling and try again!";
     }
   } catch (error) {
     // 3) Catch block to handle any errors thrown during execution
@@ -91,4 +94,5 @@ async function handleSubmit(event) {
   }
 }
 
+// Ensure the listener sits completely outside the function block!
 formTag.addEventListener("submit", handleSubmit);
