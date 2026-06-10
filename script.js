@@ -93,6 +93,7 @@ async function handleSubmit(event) {
     catBevTag.innerText = "⚠️";
     outputTag.innerText = `Error: Unable to load categories. (${error.message})`;
   }
+  formTag.reset();
 }
 function renderEmojiResult() {
   let finalOutput = localStorage.getItem("finalOutput");
